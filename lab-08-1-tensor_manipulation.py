@@ -54,3 +54,60 @@ print((matrix1+matrix2).eval())
 matrix1 = tf.constant([[[3.,3.]]])
 matrix2 = tf.constant([[2.,2.]])
 print((matrix1+matrix2).eval())
+
+## Reduce_mean 
+print(tf.reduce_mean([1, 2], axis=0).eval())
+
+x = [[1., 2.],
+     [3., 4.]]
+print(tf.reduce_mean(x).eval())
+print(tf.reduce_mean(x, axis=0).eval())
+print(tf.reduce_mean(x, axis=1).eval())
+print(tf.reduce_mean(x, axis=-1).eval())
+
+## Reduce_sum
+x = [[1., 2.],
+     [3., 4.]]
+print(tf.reduce_sum(x).eval())
+print(tf.reduce_sum(x, axis=0).eval())
+print(tf.reduce_sum(x, axis=1).eval())
+print(tf.reduce_mean(tf.reduce_sum(x, axis=-1)).eval())
+
+## Random
+# 평균이 0이고 표준편차가 2인 정규 분포를 따르는 난수로 이루어진 3x3x3 텐서
+normal = tf.random_normal([3,3,3], mean=0.0, stddev=2.0)
+print(normal.eval())
+# 0과 10 사이 난수로 균등하게 이루어진 3x3x3 텐서
+uniform = tf.random_uniform([3,3,3], minval=0, maxval=10)
+print(uniform.eval())
+
+## ArgMax with axis
+x = [[0, 1, 2],
+     [2, 1, 0]]
+print(tf.argmax(x, axis=0).eval())
+print(tf.argmax(x, axis=1).eval())
+print(tf.argmax(x, axis=-1).eval())
+
+## Reshape
+t = np.array([[[0, 1, 2],
+               [3, 4, 5]],
+              [[6, 7, 8],
+               [9, 10, 11]]])
+print(t.shape)
+print(tf.reshape(t, shape=[-1, 3]).eval())
+print(tf.reshape(t, shape=[-1, 1, 3]).eval())
+print(tf.reshape(t, shape=[-1, 2, 3]).eval())
+
+## Reshape(squeeze, expand)
+print(tf.squeeze([[0], [1], [2]]).eval())
+print(tf.expand_dims([0, 1, 2], 0).eval())
+print(tf.expand_dims([0, 1, 2], 1).eval())
+
+## one hot
+print(tf.one_hot([[0], [1], [2], [0]], depth=3).eval())
+t = tf.one_hot([[0], [1], [2], [0]], depth=3)
+print(tf.reshape(t, shape=[-1, 3]).eval())
+
+## casting
+print(tf.cast([1.8, 2.2, 3.3, 4.9], tf.int32).eval())
+print(tf.cast([True, False, 1==1, 0==1], tf.int32).eval())
