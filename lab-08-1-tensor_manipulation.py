@@ -111,3 +111,26 @@ print(tf.reshape(t, shape=[-1, 3]).eval())
 ## casting
 print(tf.cast([1.8, 2.2, 3.3, 4.9], tf.int32).eval())
 print(tf.cast([True, False, 1==1, 0==1], tf.int32).eval())
+
+## stack
+x = [1, 4]
+y = [2, 5]
+z = [3, 6]
+
+print(tf.stack([x, y, z]).eval())
+print(tf.stack([x, y, z], axis=0).eval())
+print(tf.stack([x, y, z], axis=1).eval())
+
+## ones and zeros like
+x = [[0, 1, 2],
+     [2, 1, 0]]
+print(tf.ones_like(x).eval())
+print(tf.zeros_like(x).eval())
+
+## zip
+for x, y in zip([1,2,3], [4,5,6]):
+    print(x,y)
+
+for x,y,z in zip([1,2,3], [4,5,6], [7,8,9]):
+    print(x,y,z)
+
